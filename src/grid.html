@@ -1,0 +1,29 @@
+<ng-transclude></ng-transclude>
+<table class="w-100">
+    <thead>
+        <tr>
+            <th ng-repeat="h in grd.columnDefinitions" 
+                class="bg-primary text-light text-center">
+                {{h.title}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="d in grd.data"
+            ng-click="grd.allowSelect ? grd.selectedRow = d : angular.noop()"
+            class="{{grd.rowDefinition.class}}"
+            ng-class="{ 'bg-info text-light': d == grd.selectedRow, 'bg-secondary text-light': $odd }">
+            <td ng-repeat="c in grd.columnDefinitions">
+                <grid-column value="{{d[c.key]}}"></grid-column>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th ng-repeat="h in grd.columnDefinitions"
+                class="bg-primary text-light text-center">
+                {{h.title}}
+            </th>
+        </tr>
+    </tfoot>
+</table>
